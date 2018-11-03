@@ -1,6 +1,6 @@
-# Webpack Frontend Starterkit
+# Tomodachi
 
-A lightweight foundation for your next webpack based frontend project.
+A Javascript implementation of the popular Tamagotchi handheld game.
 
 
 ### Installation

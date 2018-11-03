@@ -1,5 +1,3 @@
-$body-color: blue;
-
-body {
-  color: $body-color;
-}
+@import './1-helpers/1-helpers';
+@import './2-base/2-base';
+@import './3-layout/3-layout';
