@@ -1,0 +1,24 @@
+.option-panel {
+  display: flex;
+  width: 400px;
+  justify-content: space-between;
+  padding-left: 0;
+}
+
+.option, .attention {
+  font-family: 'Tajawal', sans-serif;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.option {
+  color: $option-color__inactive;
+}
+
+.option.active {
+  color: $option-color__active;
+}
+
+.attention {
+  color: $attention-color;
+}
