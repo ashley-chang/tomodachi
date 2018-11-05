@@ -43,8 +43,7 @@ function loadButtons(selectedOption) {
     if (selectModeOn) {
       [selected] = document.getElementsByClassName('active');
       selected.classList.toggle('active');
-      selectedOption = selected.getAttribute('id'); // eslint-disable-line no-param-reassign
-      console.log(selectedOption);
+      selectedOption.value = selected.getAttribute('id'); // eslint-disable-line no-param-reassign
       selectModeOn = false;
       activeIndex = null;
       selected = null;

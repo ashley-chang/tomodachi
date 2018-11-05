@@ -3,7 +3,22 @@ import loadSprites from './load_sprites';
 import Tomodachi from './Tomodachi';
 
 function gameplay() {
-  let selectedOption = null;
+  // define a variable to watch when option changes
+  let valueOfSelectedOption;
+  let selectedOption = {};
+  Object.defineProperty(selectedOption, 'value', {
+    get: function() {
+      console.log('get');
+      return valueOfSelectedOption;
+    },
+    set: function(value) {
+      console.log('set');
+      console.log('value');
+      valueOfSelectedOption = value;
+      tomo.actionHandler(value);
+    }
+  });
+
   const sprites = loadSprites();
   const [canvas] = document.getElementsByTagName('canvas');
   canvas.width = '400';
@@ -18,7 +33,7 @@ function gameplay() {
   let elapsed;
 
   // declare a new tomodachi
-  const tomo = new Tomodachi(new Date().now, sprites.tomodachis[1], 'minnie');
+  const tomo = new Tomodachi(new Date().now, sprites.tomodachis[2], 'minnie');
 
   // initialize the timer variables and start the animation
   function startAnimating(fps) {

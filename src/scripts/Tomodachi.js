@@ -8,7 +8,7 @@ class Tomodachi {
     this.discipline = 0;
     this.isHealthy = true;
     this.isGrumpy = false;
-    this.isDark = true;
+    this.isDark = false;
     this.type = sprite.type;
     this.currentFrame = 0;
     this.xPos = 200;
@@ -19,14 +19,14 @@ class Tomodachi {
     const current = this.sprite.frames[this.currentFrame];
     if (this.isDark) {
       this.lightsOff(ctx);
-      console.log(ctx);
+    } else {
+      ctx.drawImage(this.sprite.img,
+        current.sx,
+        current.sy,
+        current.sWidth,
+        current.sHeight,
+        this.xPos - (current.sWidth / 2), this.yPos - (current.sHeight / 2), current.sWidth, current.sHeight);
     }
-    // ctx.drawImage(this.sprite.img,
-    //   current.sx,
-    //   current.sy,
-    //   current.sWidth,
-    //   current.sHeight,
-    //   this.xPos - (current.sWidth / 2), this.yPos - (current.sHeight / 2), current.sWidth, current.sHeight);
   }
 
   update() {
@@ -40,6 +40,29 @@ class Tomodachi {
       this.yPos -= this.sprite.anchorY / 2;
     }
   }
+
+  // handle all actions
+  actionHandler(option) {
+    switch(option){
+      case 'food':
+        break;
+      case 'lights':
+        this.isDark = !this.isDark;
+        break;
+      case 'play':
+        break;
+      case 'medicine':
+        break;
+      case 'bath':
+        break;
+      case 'health':
+        break;
+      case 'discipline':
+        break;
+    }
+  }
+
+  // Individual action handlers
 
   plusFullness() {
     // max fullness 100

@@ -68,12 +68,12 @@ function loadBear() {
       {
         sx: 10,
         sy: 100,
-        sWidth: 56,
+        sWidth: 66,
         sHeight: 56,
       },
     ],
-    anchorX: 10,
-    anchorY: 55
+    anchorX: 0,
+    anchorY: 5,
   };
 }
 
