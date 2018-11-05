@@ -1,9 +1,20 @@
-function buttons() {
+function loadButtons(selectedOption) {
   const optionArray = document.getElementsByClassName('option');
   const startingOption = optionArray[0];
   let selectModeOn = false;
   let activeIndex = null;
-  let chosen;
+  let selected;
+
+  // Button color change on press
+  const btns = document.getElementsByTagName('button');
+  Array.from(btns).forEach((btn) => {
+    btn.addEventListener('mousedown', function () {
+      this.style.backgroundColor = 'black'; // eslint-disable-line no-param-reassign
+    });
+    btn.addEventListener('mouseup', function () {
+      this.style.backgroundColor = 'white'; // eslint-disable-line no-param-reassign
+    });
+  });
 
   const buttonEnter = document.getElementById('button-enter');
   const buttonSelect = document.getElementById('button-select');
@@ -30,12 +41,13 @@ function buttons() {
 
   buttonEnter.addEventListener('click', () => {
     if (selectModeOn) {
-      [chosen] = document.getElementsByClassName('active');
-      chosen.classList.toggle('active');
-      console.log(chosen);
+      [selected] = document.getElementsByClassName('active');
+      selected.classList.toggle('active');
+      selectedOption = selected.getAttribute('id'); // eslint-disable-line no-param-reassign
+      console.log(selectedOption);
       selectModeOn = false;
       activeIndex = null;
-      chosen = null;
+      selected = null;
     } else {
       // Not choosing any menu options
       // display time
@@ -44,11 +56,11 @@ function buttons() {
 
   buttonCancel.addEventListener('click', () => {
     if (selectModeOn) {
-      [chosen] = document.getElementsByClassName('active');
-      chosen.classList.toggle('active');
+      [selected] = document.getElementsByClassName('active');
+      selected.classList.toggle('active');
     }
     selectModeOn = false;
   });
 }
 
-export default buttons;
+export default loadButtons;

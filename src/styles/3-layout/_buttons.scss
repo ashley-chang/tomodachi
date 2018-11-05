@@ -7,7 +7,11 @@
   display: inline-block;
   width: 24px;
   height: 24px;
+  background-color: white;
   border: 2px solid black;
   border-radius: 50%;
   margin: 15px;
+  &:focus {
+    outline: none;
+  }
 }
