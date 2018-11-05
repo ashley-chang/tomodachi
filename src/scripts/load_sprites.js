@@ -47,7 +47,7 @@ function loadBunny() {
         sHeight: 66,
       },
     ],
-    anchorX: 5,
+    anchorX: 0,
     anchorY: 5,
   };
 }

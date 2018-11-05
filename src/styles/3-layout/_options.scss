@@ -9,9 +9,6 @@
   font-family: 'Tajawal', sans-serif;
   text-decoration: none;
   display: inline-block;
-}
-
-.option {
   color: $option-color__inactive;
 }
 
@@ -19,6 +16,6 @@
   color: $option-color__active;
 }
 
-.attention {
-  color: $attention-color;
+.attention.active {
+  color: $attention-color__active;;
 }

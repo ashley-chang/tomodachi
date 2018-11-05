@@ -8,74 +8,100 @@ class Tomodachi {
     this.discipline = 0;
     this.isHealthy = true;
     this.isGrumpy = false;
+    this.isDark = true;
     this.type = sprite.type;
-    this.anchorbottom = 200;
-    this.anchorcenter = 200;
     this.currentFrame = 0;
+    this.xPos = 200;
+    this.yPos = 200;
   }
-  //
-  // draw() {
-  //   c.drawImage(this.img, )
-  //   c.drawImage(bunnyImg, render.sx, render.sy, render.sWidth, render.sHeight,
-  //     this.anchorbottom, this.anchorcenter, current.sWidth, current.sHeight);
-  // }
-  //
-  // update() {
-  //   if (this.currentFrame === 0) {
-  //     cur = 1;
-  //     anchorbottom += this.render.anchorY;
-  //     anchorcenter -= this.render.anchorX;
-  //   } else {
-  //     cur = 0;
-  //     anchorbottom -= this.render.anchorY;
-  //     anchorcenter += this.render.anchorX;
-  //   }
-  //   this.draw();
-  // }
-  //
-  // minusFullness() {
-  //
-  // }
-  //
-  // minusHappiness() {
-  //
-  // }
-  //
-  // feed() {
-  //   if (this.hunger > 100) {
-  //     this.refuse();
-  //   } else {
-  //     this.hunger += 10;
-  //     //eating animation
-  //   }
-  // }
-  //
-  // play() {
-  //   //directions game
-  // }
-  //
-  // scold() {
-  //   this.discipline += 10;
-  //   //scolding animation
-  //
-  // }
-  //
-  // wash() {
-  //   //wash...
-  // }
-  //
-  // takeMeds() {
-  //   if (isHealthy || isGrumpy){
-  //     refuse();
-  //   } else {
-  //     //take meds
-  //     this.isHealthy = true;
-  //   }
-  // }
-  //
-  // toggleLights() {
-  //     //turn canvas black
-  // }
+
+  draw(ctx) {
+    const current = this.sprite.frames[this.currentFrame];
+    if (this.isDark) {
+      this.lightsOff(ctx);
+      console.log(ctx);
+    }
+    // ctx.drawImage(this.sprite.img,
+    //   current.sx,
+    //   current.sy,
+    //   current.sWidth,
+    //   current.sHeight,
+    //   this.xPos - (current.sWidth / 2), this.yPos - (current.sHeight / 2), current.sWidth, current.sHeight);
+  }
+
+  update() {
+    if (this.currentFrame === 0) {
+      this.currentFrame = 1;
+      this.xPos += this.sprite.anchorX / 2;
+      this.yPos += this.sprite.anchorY / 2;
+    } else {
+      this.currentFrame = 0;
+      this.xPos -= this.sprite.anchorX / 2;
+      this.yPos -= this.sprite.anchorY / 2;
+    }
+  }
+
+  plusFullness() {
+    // max fullness 100
+    this.fullness = this.fullness <= 100 ? this.fullness + 20 : this.fullness;
+  }
+
+  minusFullness() {
+    this.fullness = this.fullness <= 0 ? this.fullness : this.fullness - 20;
+  }
+
+  plusHappiness() {
+    // max happiness 100
+    this.happiness = this.happiness <= 100 ? this.happiness + 20 : this.happiness;
+  }
+
+  minusHappiness() {
+    this.happiness = this.happiness <= 0 ? this.happiness : this.happiness - 20;
+  }
+
+  feed() {
+    if (this.fullness >= 100) {
+      this.refuse();
+    } else {
+      this.plusFullness();
+    }
+  }
+
+  play() {
+    this.plusHappiness();
+    //directions game
+  }
+
+  scold() {
+    // max discipline 100
+    if (this.isGrumpy) {
+      this.discipline = this.discipline <= 100 ? this.discipline + 10 : this.discipline;
+      // scolding animation
+    } else {
+      // must be grumpy to discipline -- don't scold for no reason
+      this.minusHappiness();
+    }
+  }
+
+  wash() {
+    this.plusHappiness();
+    // remove poop
+  }
+
+  takeMeds() {
+    if (this.isHealthy || this.isGrumpy) {
+      refuse();
+    } else {
+      //take meds
+      this.isHealthy = true;
+    }
+  }
+
+  lightsOff(ctx) {
+    //turn canvas black
+    ctx.beginPath();
+    ctx.fillRect(0,0,400,400);
+  }
   //
   // refuse() {
   //   //refusal animation
